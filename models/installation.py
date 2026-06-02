@@ -10,7 +10,7 @@ class Installation(models.Model):
 
     name = fields.Char('Navn', required=True, tracking=True)
     description = fields.Text('Beskrivelse')
-    active = fields.Boolean('Aktiv', default=True)
+    active = fields.Boolean('Aktivt', default=True)
     date_installed = fields.Date('Installationsdato', tracking=True)
     installation_type_id = fields.Many2one('acomi.installation.type', string='Anlægstype', tracking=True)
     partner_id = fields.Many2one('res.partner', string='Ejer', tracking=True)
