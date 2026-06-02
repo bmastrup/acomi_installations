@@ -15,6 +15,7 @@ class Installation(models.Model):
     installation_type_id = fields.Many2one('acomi.installation.type', string='Anlægstype', tracking=True)
     partner_id = fields.Many2one('res.partner', string='Ejer', tracking=True)
     has_service_agreement = fields.Boolean('Serviceaftale', default=False)
+    image_ids = fields.One2many('acomi.installation.image', 'installation_id', string='Billeder')
     planning_slot_ids = fields.One2many('planning.slot', 'installation_id', string='Planlægning')
     planning_slot_count = fields.Integer(string='Planlægning', compute='_compute_planning_slot_count')
     attachment_count = fields.Integer(string='Dokumenter', compute='_compute_attachment_count')

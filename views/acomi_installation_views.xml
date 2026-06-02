@@ -70,6 +70,61 @@
                             <page string="Beskrivelse">
                                 <field name="description"/>
                             </page>
+                            <page string="Billeder">
+                                <field name="image_ids" mode="kanban,list" context="{'default_installation_id': id}">
+                                    <kanban>
+                                        <field name="id"/>
+                                        <field name="name"/>
+                                        <field name="image_128"/>
+                                        <field name="image_type"/>
+                                        <field name="date"/>
+                                        <templates>
+                                            <t t-name="card">
+                                                <div class="o_kanban_record">
+                                                    <div class="o_kanban_image">
+                                                        <img t-att-src="kanban_image('acomi.installation.image', 'image_128', record.id.raw_value)" alt="Billede"/>
+                                                    </div>
+                                                    <div class="o_kanban_details">
+                                                        <strong>
+                                                            <field name="name"/>
+                                                        </strong>
+                                                        <div>
+                                                            <field name="image_type"/>
+                                                        </div>
+                                                        <div>
+                                                            <field name="date"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                    <list>
+                                        <field name="image_128" widget="image"/>
+                                        <field name="name"/>
+                                        <field name="image_type"/>
+                                        <field name="date"/>
+                                        <field name="note"/>
+                                    </list>
+                                    <form string="Billede">
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="name"/>
+                                                    <field name="image_type"/>
+                                                    <field name="date"/>
+                                                </group>
+                                                <group>
+                                                    <field name="image_1920" widget="image"/>
+                                                </group>
+                                            </group>
+                                            <group>
+                                                <field name="note"/>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
                             <page string="Detaljer">
                                 <group>
                                     <group>
