@@ -43,6 +43,9 @@
                             <button name="action_open_attachments" type="object" class="oe_stat_button" icon="fa-file-text-o">
                                 <field name="attachment_count" widget="statinfo" string="Dokumenter"/>
                             </button>
+                            <button name="action_open_planning_slots" type="object" class="oe_stat_button" icon="fa-calendar">
+                                <field name="planning_slot_count" widget="statinfo" string="Planlægning"/>
+                            </button>
                         </div>
                         <div class="oe_title">
                             <h1 class="mb32">

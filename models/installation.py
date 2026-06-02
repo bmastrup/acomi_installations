@@ -14,6 +14,8 @@ class Installation(models.Model):
     date_installed = fields.Date('Installationsdato', tracking=True)
     installation_type_id = fields.Many2one('acomi.installation.type', string='Anlægstype', tracking=True)
     partner_id = fields.Many2one('res.partner', string='Ejer', tracking=True)
+    planning_slot_ids = fields.One2many('planning.slot', 'installation_id', string='Planlægning')
+    planning_slot_count = fields.Integer(string='Planlægning', compute='_compute_planning_slot_count')
     attachment_count = fields.Integer(string='Dokumenter', compute='_compute_attachment_count')
 
     state = fields.Selection([
@@ -36,6 +38,16 @@ class Installation(models.Model):
         for installation in self:
             installation.attachment_count = counts.get(installation.id, 0)
 
+    def _compute_planning_slot_count(self):
+        grouped_data = self.env['planning.slot']._read_group(
+            [('installation_id', 'in', self.ids)],
+            ['installation_id'],
+            ['__count'],
+        )
+        counts = {installation.id: count for installation, count in grouped_data}
+        for installation in self:
+            installation.planning_slot_count = counts.get(installation.id, 0)
+
     def action_open_attachments(self):
         self.ensure_one()
         return {
@@ -47,5 +59,18 @@ class Installation(models.Model):
             'context': {
                 'default_res_model': self._name,
                 'default_res_id': self.id,
+            },
+        }
+
+    def action_open_planning_slots(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Planlægning',
+            'res_model': 'planning.slot',
+            'view_mode': 'gantt,calendar,list,form',
+            'domain': [('installation_id', '=', self.id)],
+            'context': {
+                'default_installation_id': self.id,
             },
         }

@@ -3,6 +3,7 @@
     'depends': [
         'base',
         'mail',
+        'planning',
     ],
     'application': True,
     'author': "Acomi",
