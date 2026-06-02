@@ -10,6 +10,7 @@
                     <field name="installation_type_id"/>
                     <field name="date_installed"/>
                     <field name="state"/>
+                    <field name="has_service_agreement"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -28,6 +29,7 @@
                     <filter string="Vis kun inaktive" name="inactive" domain="[('active', '=', False)]"/>
                     <filter string="Ejer" name="group_by_partner" context="{'group_by': 'partner_id'}"/>
                     <filter string="Type" name="group_by_installation_type" context="{'group_by': 'installation_type_id'}"/>
+                    <filter string="Med serviceaftale" name="group_by_has_service_agreement" context="{'group_by': 'has_service_agreement'}"/>
                     <separator/>
                 </search>
             </field>
@@ -61,6 +63,7 @@
                             </group>
                             <group string="Status">
                                 <field name="active"/>
+                                <field name="has_service_agreement"/>
                             </group>
                         </group>
                         <notebook>

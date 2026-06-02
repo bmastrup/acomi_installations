@@ -14,6 +14,7 @@ class Installation(models.Model):
     date_installed = fields.Date('Installationsdato', tracking=True)
     installation_type_id = fields.Many2one('acomi.installation.type', string='Anlægstype', tracking=True)
     partner_id = fields.Many2one('res.partner', string='Ejer', tracking=True)
+    has_service_agreement = fields.Boolean('Serviceaftale', default=False)
     planning_slot_ids = fields.One2many('planning.slot', 'installation_id', string='Planlægning')
     planning_slot_count = fields.Integer(string='Planlægning', compute='_compute_planning_slot_count')
     attachment_count = fields.Integer(string='Dokumenter', compute='_compute_attachment_count')
@@ -24,7 +25,6 @@ class Installation(models.Model):
         ("planned", "Planlagt"),
         ("build", "Etableres"),
         ("delivered", "Afleveret"),
-        ("service", "Serviceaftale"),
         ("inactive", "Inaktiv"),
     ], string="Status", default="proposal", tracking=True)
 
