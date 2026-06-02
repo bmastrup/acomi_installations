@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+        <menuitem id="menu_acomi_installation_root" name="Anlæg" web_icon="acomi_installations,static/description/icon.png"/>
+
+        <menuitem id="menu_acomi_installation" name="Anlæg" parent="menu_acomi_installation_root" action="action_acomi_installation"/>
+
+        <menuitem id="menu_acomi_installation_configuration" name="Konfiguration" parent="menu_acomi_installation_root" sequence="90"/>
+
+        <menuitem id="menu_acomi_installation_type" name="Anlægstyper" parent="menu_acomi_installation_configuration" action="action_acomi_installation_type"/>
+    </data>
+</odoo>

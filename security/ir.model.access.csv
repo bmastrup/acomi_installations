@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_acomi_installation_user,acomi.installation.user,model_acomi_installation,base.group_user,1,1,1,1
+access_acomi_installation_type_user,acomi.installation.type.user,model_acomi_installation_type,base.group_user,1,1,1,1

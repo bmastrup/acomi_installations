@@ -1,0 +1,99 @@
+<odoo>
+    <data>
+        <record id="view_acomi_installation_list" model="ir.ui.view">
+            <field name="name">acomi.installation.list</field>
+            <field name="model">acomi.installation</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="partner_id"/>
+                    <field name="name"/>
+                    <field name="installation_type_id"/>
+                    <field name="date_installed"/>
+                    <field name="state"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_acomi_installation_search" model="ir.ui.view">
+            <field name="name">acomi.installation.search</field>
+            <field name="model">acomi.installation</field>
+            <field name="arch" type="xml">
+                <search string="Søgninger">
+                    <field name="partner_id"/>
+                    <field name="name"/>
+                    <field name="installation_type_id"/>
+                    <field name="state"/>
+                    <filter string="Vis også inaktive" name="archived" domain="['|', ('active', '=', True), ('active', '=', False)]"/>
+                    <filter string="Vis kun inaktive" name="inactive" domain="[('active', '=', False)]"/>
+                    <filter string="Ejer" name="group_by_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Type" name="group_by_installation_type" context="{'group_by': 'installation_type_id'}"/>
+                    <separator/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_acomi_installation_form" model="ir.ui.view">
+            <field name="name">acomi.installation.form</field>
+            <field name="model">acomi.installation</field>
+            <field name="arch" type="xml">
+                <form string="Anlæg">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_open_attachments" type="object" class="oe_stat_button" icon="fa-file-text-o">
+                                <field name="attachment_count" widget="statinfo" string="Dokumenter"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1 class="mb32">
+                                <field name="name" class="mb16"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Stamdata">
+                                <field name="partner_id"/>
+                                <field name="installation_type_id"/>
+                                <field name="state"/>
+                                <field name="date_installed"/>
+                            </group>
+                            <group string="Status">
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Beskrivelse">
+                                <field name="description"/>
+                            </page>
+                            <page string="Detaljer">
+                                <group>
+                                    <group>
+                                        <field name="date_installed"/>
+                                    </group>
+                                    <group>
+                                        <field name="state"/>
+                                        <field name="active"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_acomi_installation" model="ir.actions.act_window">
+            <field name="name">Anlæg</field>
+            <field name="res_model">acomi.installation</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Opret nyt anlæg
+                </p>
+                <p>
+                    Hold styr på anlæg hos kunder, som skal serviceres, m.m.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>
