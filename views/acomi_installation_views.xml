@@ -99,12 +99,22 @@
                                 <field name="state"/>
                                 <field name="date_installed"/>
                             </group>
-                            <group string="Status">
-                                <field name="active"/>
+                            <group string="Serviceaftale">
                                 <field name="has_service_agreement"/>
                             </group>
                         </group>
                         <notebook>
+                            <page string="Detaljer">
+                                <group>
+                                    <group>
+                                        <field name="date_installed"/>
+                                    </group>
+                                    <group>
+                                        <field name="active"/>
+                                        <field name="state"/>
+                                    </group>
+                                </group>
+                            </page>
                             <page string="Beskrivelse">
                                 <field name="description"/>
                             </page>
@@ -162,17 +172,6 @@
                                         </sheet>
                                     </form>
                                 </field>
-                            </page>
-                            <page string="Detaljer">
-                                <group>
-                                    <group>
-                                        <field name="date_installed"/>
-                                    </group>
-                                    <group>
-                                        <field name="state"/>
-                                        <field name="active"/>
-                                    </group>
-                                </group>
                             </page>
                         </notebook>
                     </sheet>

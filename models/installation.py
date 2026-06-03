@@ -22,7 +22,7 @@ class Installation(models.Model):
 
     state = fields.Selection([
         ("proposal", "Tilbud"),
-        ("accepted", "Accept"),
+        ("accepted", "Accepteret"),
         ("planned", "Planlagt"),
         ("build", "Etableres"),
         ("delivered", "Afleveret"),
