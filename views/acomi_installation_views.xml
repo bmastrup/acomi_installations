@@ -6,12 +6,11 @@
             <field name="arch" type="xml">
                 <list>
                     <field name="partner_id"/>
-                    <field name="name"/>
                     <field name="installation_type_id"/>
+                    <field name="name"/>
                     <field name="date_installed"/>
                     <field name="state"/>
                     <field name="has_service_agreement"/>
-                    <field name="active"/>
                 </list>
             </field>
         </record>
@@ -32,19 +31,13 @@
                             <div class="o_kanban_record">
                                 <div class="o_kanban_details">
                                     <strong>
-                                        <field name="name"/>
+                                        <field name="partner_id"/>
                                     </strong>
                                     <div>
-                                        <field name="partner_id"/>
+                                        <field name="name"/>
                                     </div>
                                     <div>
                                         <field name="installation_type_id"/>
-                                    </div>
-                                    <div>
-                                        <field name="date_installed"/>
-                                    </div>
-                                    <div>
-                                        <field name="has_service_agreement"/>
                                     </div>
                                 </div>
                             </div>
@@ -98,6 +91,7 @@
                                 <field name="installation_type_id"/>
                                 <field name="state"/>
                                 <field name="date_installed"/>
+                                <field name="active"/>
                             </group>
                             <group string="Serviceaftale">
                                 <field name="has_service_agreement"/>
@@ -107,16 +101,15 @@
                             <page string="Detaljer">
                                 <group>
                                     <group>
-                                        <field name="date_installed"/>
+                                        <field name="description"/>
                                     </group>
                                     <group>
-                                        <field name="active"/>
                                         <field name="state"/>
                                     </group>
                                 </group>
                             </page>
                             <page string="Beskrivelse">
-                                <field name="description"/>
+
                             </page>
                             <page string="Billeder">
                                 <field name="image_ids" mode="kanban,list" context="{'default_installation_id': id}">
