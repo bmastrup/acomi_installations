@@ -87,7 +87,7 @@
                         </div>
                         <group>
                             <group string="Stamdata">
-                                <field name="partner_id"/>
+                                <field name="partner_id" widget="res_partner_many2One" context="{'show_address': 1}" options="{'always_reload': true}"/>
                                 <field name="installation_type_id"/>
                                 <field name="state"/>
                                 <field name="date_installed"/>
