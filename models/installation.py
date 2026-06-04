@@ -72,6 +72,7 @@ class Installation(models.Model):
             'view_mode': 'gantt,calendar,list,form',
             'domain': [('installation_id', '=', self.id)],
             'context': {
+                'defauilt_partner_id': self.partner_id,
                 'default_installation_id': self.id,
             },
         }
