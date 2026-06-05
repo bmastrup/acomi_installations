@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record id="view_order_form_inherit_acomi_installation" model="ir.ui.view">
+            <field name="name">sale.order.form.acomi.installation</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="(//field[@name='partner_id'])[1]" position="after">
+                    <field
+                        name="installation_id"
+                        domain="[('partner_id', '=', partner_id)]"
+                        context="{'default_partner_id': partner_id}"
+                        options="{'no_create': True, 'no_create_edit': True}"
+                    />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -17,7 +17,9 @@ class Installation(models.Model):
     has_service_agreement = fields.Boolean('Serviceaftale', default=False)
     image_ids = fields.One2many('acomi.installation.image', 'installation_id', string='Billeder')
     planning_slot_ids = fields.One2many('planning.slot', 'installation_id', string='Planlægning')
+    sale_order_ids = fields.One2many('sale.order', 'installation_id', string='Salgsordrer')
     planning_slot_count = fields.Integer(string='Planlægning', compute='_compute_planning_slot_count')
+    sale_order_count = fields.Integer(string='Salgsordrer', compute='_compute_sale_order_count')
     attachment_count = fields.Integer(string='Dokumenter', compute='_compute_attachment_count')
 
     state = fields.Selection([
@@ -49,6 +51,16 @@ class Installation(models.Model):
         for installation in self:
             installation.planning_slot_count = counts.get(installation.id, 0)
 
+    def _compute_sale_order_count(self):
+        grouped_data = self.env['sale.order']._read_group(
+            [('installation_id', 'in', self.ids)],
+            ['installation_id'],
+            ['__count'],
+        )
+        counts = {installation.id: count for installation, count in grouped_data}
+        for installation in self:
+            installation.sale_order_count = counts.get(installation.id, 0)
+
     def action_open_attachments(self):
         self.ensure_one()
         return {
@@ -60,6 +72,20 @@ class Installation(models.Model):
             'context': {
                 'default_res_model': self._name,
                 'default_res_id': self.id,
+            },
+        }
+
+    def action_open_sale_orders(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Salgsordrer',
+            'res_model': 'sale.order',
+            'view_mode': 'list,form',
+            'domain': [('installation_id', '=', self.id)],
+            'context': {
+                'default_partner_id': self.partner_id.id,
+                'default_installation_id': self.id,
             },
         }
 
